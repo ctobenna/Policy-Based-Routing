@@ -23,16 +23,23 @@ Initially, traffic from the PC on R1 to the PC on R3 traverses the OSPF-learned 
 </br><i>R1 → R4 (203.0.113.2) → R3 (93.0.113.2) → 192.168.1.2</i>
 </p>
 <p>However, I implemented a policy on R1 to force selected traffic to instead take an alternate path via R2, bypassing OSPF preference, even though this link has lower bandwidth (10 Mbps, half-duplex) compared to the OSPF route (100 Mbps, full-duplex).</p>
-
 </br>
 
+<p align="center">
+ <img src="https://i.imgur.com/rIgAHDU.png" width="80%" height="80%" alt="R1 Interface">
+</p>
+</br>
+
+
 <h2>🧪 Result</h2>
-<p>After applying the policy route on R1, traffic from 192.168.0.2 to 192.168.1.2 was successfully rerouted through 203.0.113.6 via R2, as verified using traceroute. The PBR forced the router to ignore OSPF's preferred path (R4) and use a manually defined path (R2), demonstrating fine-grained traffic control using PBR.</p>
+<p>After applying the policy route on R1, traffic from 192.168.0.2 to 192.168.1.2 was successfully rerouted through 203.0.113.6 via R2, as verified using traceroute. The PBR forced the router to ignore OSPF's preferred path (R4) and use a manually defined path (R2), demonstrating fine-grained traffic control using PBR.</p></br>
+
 
 <p align="center">
 <img src="https://i.imgur.com/QCVGIZA.png" height="80%" width="80%" alt="finalPath">
 </p>
 </br>
+
 <h2>⚙️ Configuration Summary</h2>
 
  <h3>R1 Configuration</h3>
